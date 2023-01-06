@@ -30,4 +30,4 @@ jobs:
         run: echo "render!"
       - name: get name!
         if: ${{ contains(env.Test, 'test-render') }}
-        run: echo "yes! ${{ env.Test }} ${{ contain(env.Test, 'test-render') }}
+        run: echo "yes! ${{ env.Test }} ${{ contains(env.Test, 'test-render') }}
