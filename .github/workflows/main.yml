@@ -18,7 +18,7 @@ jobs:
       - name: echo labels
         run: echo "${{ toJSON(github.event.pull_request.labels.*) }}"
       - name: need render?
-        run: echo "test-render is ${{ env.TEST_RENDER }}!" "anti is ${{ !env.TEST_RENDER }}!"
+        run: echo "${{ env.TEST_RENDER }}" "${{ !env.TEST_RENDER }}!"
       - name: hi2!
         if: ${{ !env.TEST_RENDER }}
         run: echo "hi"
