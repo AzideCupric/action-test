@@ -8,7 +8,10 @@ on:
       - reopened
       # 以上为默认情况
       - labeled
-  
+
+env:
+  Test: ${{ toJSON(github.event.pull_request.labels.*) }}
+
 jobs:
   Welcome:
     runs-on: ubuntu-latest
@@ -16,7 +19,7 @@ jobs:
       TEST_RENDER: ${{ contains(github.event.pull_request.labels.*.name, 'test-render') }}
     steps:
       - name: echo labels
-        run: echo "${{ toJSON(github.event.pull_request.labels.*) }}"
+        run: echo "${{ toJSON(github.event.pull_request.labels.*) }}" "${{ toJSON(env.Test) }}"
       - name: need render?
         run: echo "${{ env.TEST_RENDER }}" "${{ !env.TEST_RENDER }}!"
       - name: hi2!
