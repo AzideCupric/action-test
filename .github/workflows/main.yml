@@ -10,7 +10,7 @@ on:
       - labeled
 
 env:
-  Test: ${{ toJSON(github.event.pull_request.labels.*) }}
+  Test: ${{ toJSON(github.event.pull_request.labels.*.name) }}
 
 jobs:
   Welcome:
@@ -21,10 +21,13 @@ jobs:
       - name: echo labels
         run: echo "${{ toJSON(github.event.pull_request.labels.*) }}" "${{ toJSON(env.Test) }}"
       - name: need render?
-        run: echo "${{ env.TEST_RENDER }}" "${{ !env.TEST_RENDER }}!"
+        run: echo "${{ env.TEST_RENDER }}" "${{ !env.Test }}!"
       - name: hi2!
         if: ${{ !env.TEST_RENDER }}
         run: echo "hi"
       - name: render!
         if: ${{ env.TEST_RENDER }}
         run: echo "render!"
+      - name: get name!
+        if: ${{ contains(env.Test, 'test-render') }}
+        run: echo "yes! ${{ env.Test }} ${{ contain(env.Test, 'test-render') }}
