@@ -16,10 +16,10 @@ jobs:
       TEST_RENDER: ${{ contains(github.event.issue.labels, 'test-render') }}
     steps:
       - name: echo labels
-        run: echo "${{ toJSON(github.event.issue.labels.*.name) }}"
+        run: echo "${{ toJSON(github.event.issue.labels) }}"
       - name: need render?
         run: echo "${{ env.TEST_RENDER }}" "${{ !env.TEST_RENDER }}"
-      - name: hi!
+      - name: hi2!
         if: ${{ env.TEST_RENDER }}
         run: echo "hi"
       - name: render!
